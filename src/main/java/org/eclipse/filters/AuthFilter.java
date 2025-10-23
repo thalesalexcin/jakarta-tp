@@ -26,6 +26,8 @@ public class AuthFilter extends HttpFilter implements Filter {
 		var authUser = req.getSession().getAttribute("auth_user");
 		if (!path.contains("sign") && authUser == null) {
 			resp.sendRedirect(req.getContextPath() + "/signin");	
+		} else if (path.contains("sign") && !path.contains("signout") && authUser != null) {
+			resp.sendRedirect(req.getContextPath() + "/home");	
 		} else {
 			chain.doFilter(request, response);			
 		}

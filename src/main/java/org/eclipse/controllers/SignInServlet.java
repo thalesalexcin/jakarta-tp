@@ -22,19 +22,13 @@ public class SignInServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getSession().getAttribute("auth_user") == null) {
-			request.getRequestDispatcher("/WEB-INF/sign-in.jsp").forward(request, response);			
-		} else {
-			response.sendRedirect(request.getContextPath() + "/home");
-		}
+		request.getRequestDispatcher("/WEB-INF/sign-in.jsp").forward(request, response);			
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		User user = dao.findByEmailAndPassword(email, password);
-		
 		if (user != null) {
 			request.getSession().setAttribute("auth_user", user);
 			response.sendRedirect(request.getContextPath() + "/home");	
