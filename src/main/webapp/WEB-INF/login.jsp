@@ -5,7 +5,6 @@
 <title>Connexion</title>
 <%@ include file="partial/_links.jsp"%>
 </head>
-</head>
 <body>
 	<h1 class="container text-center text-primary my-5">Connexion</h1>
 
