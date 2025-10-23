@@ -1,20 +1,28 @@
-<nav class="container my-5">
-	<ul id="menu">
-		<c:url value="/listings" var="myListings"></c:url>
-		<li>
-			<a href="${myListings}">Mes annonces</a>
+<c:url value="/listings" var="myListings"></c:url>
+<c:url value="/saved" var="saved"></c:url>
+<c:url value="/profil" var="profil"></c:url>
+<c:url value="/signout" var="logout"></c:url>
+<nav class="navbar navbar-expand-lg bg-primary-subtle text-primary-emphasis">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Immo TeP</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		<li class="nav-item">
+			<a class="nav-link" href="${myListings}">Mes annonces</a>
 		</li>
-		<c:url value="/saved" var="saved"></c:url>
-		<li>
-			<a href="${saved}">Mes favoris</a>
+		<li class="nav-item">
+			<a class="nav-link" href="${saved}">Mes favoris</a>
 		</li>
-		<c:url value="/profil" var="profil"></c:url>
-		<li>
-			<a href="${profil}">Mon profil</a>
+		<li class="nav-item">
+			<a class="nav-link" href="${profil}">Mon profil</a>
 		</li>
-		<c:url value="/signout" var="logout"></c:url>
-		<li>
-			<a href="${logout}">Déconnexion</a>
+		<li class="nav-item">
+			<a class="nav-link" href="${logout}">Déconnexion</a>
 		</li>
 	</ul>
+    </div>
+  </div>
 </nav>
