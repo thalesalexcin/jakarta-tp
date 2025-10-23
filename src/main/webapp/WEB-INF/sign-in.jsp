@@ -15,13 +15,13 @@
 			<div class="mb-4 row">
 				<label for="a" class="col-sm-3 col-form-label">Email :</label> 
 				<div class="col-sm-9">
-					<input class="form-control" type="email" name="email" id="email" value="${email}" required>
+					<input class="form-control" type="email" name="email" id="email" required autocomplete="email">
 				</div> 
 			</div>
 			<div class="mb-4 row">
 				<label for="b" class="col-sm-3 col-form-label">Mot de passe :</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="password" name="password" id="password" required>
+					<input class="form-control" type="password" name="password" id="password" required autocomplete="current-password">
 				</div>
 			</div>
 
@@ -33,7 +33,7 @@
 		</form>
 	</div>
 	
-	<div class="container col-sm-4 text-center">
+	<div class="container mt-2 col-sm-4 text-center">
 		<a href="${signup}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Inscription</a>
 	</div>
 	
