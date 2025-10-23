@@ -22,7 +22,6 @@ public class SignInServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		if (request.getSession().getAttribute("auth_user") == null) {
 			request.getRequestDispatcher("/WEB-INF/sign-in.jsp").forward(request, response);			
 		} else {
