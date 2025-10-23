@@ -28,7 +28,7 @@ public class UserDao implements GenericDao<User, Integer> {
                     String firstName = resultSet.getString("prenom");
                     String email = resultSet.getString("email");
                     
-                    users.add(new User(id, lastName, firstName, email));
+                    users.add(new User(id, firstName, lastName, email));
                 }
             } catch (Exception e) {
             	System.err.println("Unable to findAll User");
@@ -52,7 +52,7 @@ public class UserDao implements GenericDao<User, Integer> {
                      String firstName = resultSet.getString("prenom");
                      String email = resultSet.getString("email");
                      
-                     return new User(id, lastName, firstName, email);
+                     return new User(id, firstName, lastName, email);
                 }
             } catch (Exception e) {
             	System.err.println("Unable to find User");
@@ -76,7 +76,7 @@ public class UserDao implements GenericDao<User, Integer> {
                      String firstName = resultSet.getString("prenom");
                      String email = resultSet.getString("email");
                      
-                     return new User(id, lastName, firstName, email);
+                     return new User(id, firstName, lastName, email);
                 }
             } catch (Exception e) {
             	System.err.println("Unable to find User");
@@ -130,6 +130,25 @@ public class UserDao implements GenericDao<User, Integer> {
             }
         }
         return null;
+    }
+    
+    public boolean updatePassword(Integer id, String newPassword) {
+        Connection connection = MySqlConnection.getConnection();
+        if (connection != null) {
+            try {
+                String update = "UPDATE utilisateur SET motDePasse = ? WHERE id = ?";
+                PreparedStatement statement = connection.prepareStatement(update);
+                statement.setString(1, newPassword);
+                statement.setInt(2, id);
+                int result = statement.executeUpdate();
+                if (result > 0) {
+                    return true;
+                }
+            } catch (Exception e) {
+                System.err.println("Unable to update Password");
+            }
+        }
+        return false;
     }
  
     @Override
