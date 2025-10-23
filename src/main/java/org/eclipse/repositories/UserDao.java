@@ -65,7 +65,7 @@ public class UserDao implements GenericDao<User, Integer> {
         Connection connection = MySqlConnection.getConnection();
         if (connection != null) {
             try {
-                String select = "SELECT id, nom, prenom, email FROM utilisateur WHERE email = ? AND password = ?";
+                String select = "SELECT id, nom, prenom, email FROM utilisateur WHERE email = ? AND motDePasse = ?";
                 PreparedStatement statement = connection.prepareStatement(select);
                 statement.setString(1, userEmail);
                 statement.setString(2, userPassword);
