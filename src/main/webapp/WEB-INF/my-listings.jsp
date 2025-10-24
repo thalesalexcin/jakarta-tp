@@ -42,11 +42,11 @@
 						<td>${ listing.price }</td>
 						<td>${ listing.city }</td>
 						<td>
+							<c:url var="edit_listing" value="/listing">
+								<c:param name="id" value="${listing.id}"></c:param>
+							</c:url>
+							<c:url var="delete_listing" value="/listings"></c:url>
 							<form action="${delete_listing}" method="post">
-								<c:url var="edit_listing" value="/listing">
-								<c:url var="delete_listing" value="/listings"></c:url>
-									<c:param name="id" value="${listing.id}"></c:param>
-								</c:url>
 								<a href="${edit_listing}" class="btn col-sm-5 btn-sm btn-primary">Modifier</a>
 								<button type="submit" class="btn col-sm-5 btn-sm btn-danger">Supprimer</button>
 								<input type="hidden" name="id" value="${listing.id}">
