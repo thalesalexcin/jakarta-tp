@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.eclipse.config.MySqlConnection;
 import org.eclipse.models.Favorite;
-import org.eclipse.models.Listing;
 
 public class FavoriteDao implements GenericDao<Favorite, Integer> {
 
