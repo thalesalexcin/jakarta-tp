@@ -2,12 +2,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Modifier Annonce</title>
+<c:choose>
+	<c:when test="${listing_id != 0}">
+		<c:set var="title" value="Modifier Annonce"></c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="title" value="Ajouter Annonce"></c:set>
+	</c:otherwise>
+</c:choose>
+<title>
+	${title}
+</title>
 <jsp:include page="partial/_links.jsp"></jsp:include>
 </head>
 <body class="bg-light mb-5">
 	<jsp:include page="partial/_menu.jsp"></jsp:include>
-	<h1 class="container text-center text-primary my-5">Modifier Annonce</h1>
+	<h1 class="container text-center text-primary my-5">${title}</h1>
 	
 	<c:if test="${!empty error}">
 		<div class="alert alert-danger alert-dismissible container col-sm-4 fade show" role="alert">
