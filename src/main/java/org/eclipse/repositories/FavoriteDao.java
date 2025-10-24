@@ -60,6 +60,26 @@ public class FavoriteDao implements GenericDao<Favorite, Integer> {
         return favorites;
     }	
 	
+	public Favorite findByUserAndListing(Integer userId, Integer listingId) {
+        Connection connection = MySqlConnection.getConnection();
+        if (connection != null) {
+            try {
+            	String select = "SELECT id, idUtilisateur, idAnnonce FROM favori WHERE idUtilisateur = ? AND idAnnonce = ?";
+                PreparedStatement statement = connection.prepareStatement(select);
+                statement.setInt(1, userId);
+                statement.setInt(2, listingId);
+                ResultSet resultSet = statement.executeQuery();
+                
+                if (resultSet.next()) {                    
+                    return new Favorite(resultSet.getInt("id"), resultSet.getInt("idAnnonce"), resultSet.getInt("idUtilisateur"));	
+                }
+            } catch (Exception e) {
+            	System.err.println(e.getMessage());
+            }
+        }
+        return null;
+    }
+	
 	public boolean isFavorite(Integer userId, Integer listingId) {
         Connection connection = MySqlConnection.getConnection();
         if (connection != null) {

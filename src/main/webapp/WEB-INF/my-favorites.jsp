@@ -39,9 +39,10 @@
 						<td>${ listing.price }</td>
 						<td>${ listing.city }</td>
 						<td>
-							<c:url var="toggle_favorite" value="/listing"></c:url>
+							<c:url var="toggle_favorite" value="/favorites"></c:url>
 							<form action="${toggle_favorite}" method="post">
 								<button type="submit" class="btn col-sm-12 btn-sm btn-danger">Enlever des favoris</button>
+								<input type="hidden" name="from" value="favorites">
 								<input type="hidden" name="id" value="${listing.id}">
 							</form>
 						</td>

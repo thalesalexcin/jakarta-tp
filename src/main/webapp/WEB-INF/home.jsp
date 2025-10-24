@@ -38,7 +38,7 @@
 						<td>${ listing.price }</td>
 						<td>${ listing.city }</td>
 						<td>
-							<c:url var="toggle_favorite" value="/listing"></c:url>
+							<c:url var="toggle_favorite" value="/favorites"></c:url>
 							<form action="${toggle_favorite}" method="post">
 								<c:choose>
 									<c:when test="${listings_favorites[listingStatus.index]}">
@@ -48,6 +48,7 @@
 										<button type="submit" class="btn col-sm-12 btn-sm btn-primary">Ajouter des favoris</button>
 									</c:otherwise>
 								</c:choose>
+								<input type="hidden" name="from" value="home">
 								<input type="hidden" name="id" value="${listing.id}">
 							</form>
 						</td>
