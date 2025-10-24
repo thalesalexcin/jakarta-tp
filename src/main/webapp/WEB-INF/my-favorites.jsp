@@ -1,24 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Page d'accueil</title>
+<title>Mes Favoris</title>
 <jsp:include page="partial/_links.jsp"></jsp:include>
 </head>
-<body class="bg-light">
+<body class="bg-light mb-5">
 	<jsp:include page="partial/_menu.jsp"></jsp:include>
-	
-	<h1 class="container text-center my-4">
-		<span class="text-secondary">Bienvenue,</span>
-		<span class="text-primary">${first_name} ${last_name}</span>
-	</h1>
-	
-	<h3 class="container text-center my-2">
-		<span class="text-tertiary">Les dernières annonces</span>
-	</h3>
-	
+	<h1 class="container text-center text-primary my-5">Mes Favoris</h1>
+
+	<c:if test="${!empty error}">
+		<div
+			class="alert alert-danger alert-dismissible container col-sm-4 fade show" role="alert">
+			<c:out value="${error}"></c:out>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	</c:if>
+
+	<c:url var="add_listing" value="/listing">
+		<c:param name="id" value="0"></c:param>
+	</c:url>
 	<div class="container table-responsive">
 		<table class="table table-striped table-bordered table-dark">
 			<thead>
@@ -31,7 +32,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${listings}" var="listing" varStatus="listingStatus">
+				<c:forEach items="${listings}" var="listing">
 					<tr>
 						<th scope="row">${ listing.title }</th>
 						<td>${ listing.description }</td>
@@ -40,14 +41,7 @@
 						<td>
 							<c:url var="toggle_favorite" value="/listing"></c:url>
 							<form action="${toggle_favorite}" method="post">
-								<c:choose>
-									<c:when test="${listings_favorites[listingStatus.index]}">
-										<button type="submit" class="btn col-sm-12 btn-sm btn-danger">Enlever des favoris</button>
-									</c:when>
-									<c:otherwise>
-										<button type="submit" class="btn col-sm-12 btn-sm btn-primary">Ajouter des favoris</button>
-									</c:otherwise>
-								</c:choose>
+								<button type="submit" class="btn col-sm-12 btn-sm btn-danger">Enlever des favoris</button>
 								<input type="hidden" name="id" value="${listing.id}">
 							</form>
 						</td>

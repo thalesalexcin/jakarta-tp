@@ -1,8 +1,13 @@
 package org.eclipse.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.eclipse.models.Listing;
 import org.eclipse.models.User;
+import org.eclipse.repositories.FavoriteDao;
+import org.eclipse.repositories.ListingDao;
 import org.eclipse.repositories.UserDao;
 
 import jakarta.servlet.ServletException;
@@ -15,17 +20,32 @@ import jakarta.servlet.http.HttpServletResponse;
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private UserDao dao;
+	private UserDao userDao;
+	private ListingDao listingDao;
+	private FavoriteDao favoriteDao;
 	
 	@Override
 	public void init() throws ServletException {
-		dao = new UserDao();
+		userDao = new UserDao();
+		listingDao = new ListingDao();
+		favoriteDao = new FavoriteDao();
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var authUser = request.getSession().getAttribute("auth_user");
 		if (authUser instanceof User user) {
-			user = dao.findById(user.getId());
+			user = userDao.findById(user.getId());
+			
+			var otherListings = listingDao.findAllByNotOwnerId(user.getId());
+			
+			List<Boolean> listingFavorites = new ArrayList<Boolean>();
+			for (Listing listing : otherListings) {
+				boolean isFavorite = favoriteDao.isFavorite(user.getId(), listing.getId());
+				listingFavorites.add(isFavorite);
+			}
+			
+			request.setAttribute("listings", otherListings);
+			request.setAttribute("listings_favorites", listingFavorites);
 			request.setAttribute("first_name", user.getFirstName());
 			request.setAttribute("last_name", user.getLastName());
 		}

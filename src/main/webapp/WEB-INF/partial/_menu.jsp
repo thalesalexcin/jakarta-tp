@@ -1,5 +1,5 @@
 <c:url value="/listings" var="myListings"></c:url>
-<c:url value="/saved" var="saved"></c:url>
+<c:url value="/favorites" var="favorites"></c:url>
 <c:url value="/profile" var="profile"></c:url>
 <c:url value="/signout" var="logout"></c:url>
 <c:url value="/home" var="home"></c:url>
@@ -15,7 +15,7 @@
 			<a class="nav-link" href="${myListings}">Mes annonces</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="${saved}">Mes favoris</a>
+			<a class="nav-link" href="${favorites}">Mes favoris</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="${profile}">Mon profil</a>
