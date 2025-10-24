@@ -31,4 +31,13 @@ CREATE USER 'db_admin_tp' IDENTIFIED BY 'db_admin_tp_mdp';
 GRANT ALL PRIVILEGES ON immobilier.* TO 'db_admin_tp'@'%';
 
 
-insert into utilisateur values (null, 'Albuquerque', 'Thales', 'tata@immo.com', '12345678');
+insert into utilisateur values (null, 'Albuquerque', 'Thales', 'tata@immo.com', '1234');
+insert into utilisateur values (null, 'Wick', 'Jhon', 'titi@immo.com', '1234');
+
+insert into annonce values (null, 'Appartement T2', 'Neuf, 44m2 avec place parking', 152000, 'Bordeaux', 1);
+insert into annonce values (null, 'Appartement T1Bis', 'Vente, Neuf, 25m2', 100000, 'Bordeaux', 1);
+insert into annonce values (null, 'Appartement T1Bis', 'Location, Neuf, 25m2', 780, 'Bordeaux', 1);
+insert into annonce values (null, 'Maison T2', 'Renovée, 55m2 avec jardin', 220000, 'Bouscat', 2);
+
+insert into favori values (null, 2, 1);
+insert into favori values (null, 2, 3);
