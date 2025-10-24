@@ -15,14 +15,14 @@ description text ,
 prix decimal (10 ,2) not null ,
 ville varchar (50) ,
 idUtilisateur int ,
-foreign key ( idUtilisateur ) references utilisateur ( id )
+foreign key ( idUtilisateur ) references utilisateur ( id ) on delete cascade
 ) ;
 create table favori (
 id int primary key auto_increment ,
 idUtilisateur int ,
 idAnnonce int ,
-foreign key ( idUtilisateur ) references utilisateur ( id ) ,
-foreign key ( idAnnonce ) references annonce ( id )
+foreign key ( idUtilisateur ) references utilisateur ( id ) on delete cascade,
+foreign key ( idAnnonce ) references annonce ( id ) on delete cascade
 ) ;
 
 
