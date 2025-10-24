@@ -31,6 +31,7 @@
 					<th scope="col">Description</th>
 					<th scope="col">Prix</th>
 					<th scope="col">Ville</th>
+					<th scope="col">Photo</th>
 					<th scope="col">Options</th>
 				</tr>
 			</thead>
@@ -41,6 +42,14 @@
 						<td>${ listing.description }</td>
 						<td>${ listing.price }</td>
 						<td>${ listing.city }</td>
+						<td class="col-sm-1">
+							<c:url var="image_link" value="image">
+								<c:param name="id" value="${listing.id}"></c:param>
+							</c:url>
+							<a href="${image_link}">
+								<img src="${image_link}" alt="" class="img-fluid img-thumbnail">
+							</a>
+						</td>
 						<td>
 							<c:url var="edit_listing" value="/listing">
 								<c:param name="id" value="${listing.id}"></c:param>

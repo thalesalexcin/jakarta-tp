@@ -29,6 +29,7 @@
 					<th scope="col">Prix</th>
 					<th scope="col">Ville</th>
 					<th scope="col">Annonceur</th>
+					<th scope="col">Photo</th>	
 					<th scope="col">Options</th>
 				</tr>
 			</thead>
@@ -40,6 +41,14 @@
 						<td>${ listing.price }</td>
 						<td>${ listing.city }</td>
 						<td>${ listings_owner[listingStatus.index].lastName } ${ listings_owner[listingStatus.index].firstName }</td>
+						<td class="col-sm-1">
+							<c:url var="image_link" value="image">
+								<c:param name="id" value="${listing.id}"></c:param>
+							</c:url>
+							<a href="${image_link}">
+								<img src="${image_link}" alt="" class="img-fluid img-thumbnail">
+							</a>
+						</td>
 						<td>
 							<c:url var="toggle_favorite" value="/favorites"></c:url>
 							<form action="${toggle_favorite}" method="post">

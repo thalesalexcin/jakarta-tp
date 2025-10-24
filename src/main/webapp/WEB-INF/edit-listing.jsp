@@ -61,6 +61,27 @@
 			</div>
 			<input class="form-control" type="hidden" name="id" value="${listing_id}">
 		</form>
-	</div>	
+	</div>
+	
+	<c:if test="${listing_id != 0}">
+		<div class="container p-4 border border-2 rounded-4 col-sm-4">
+			<c:url var="image_link" value="image">
+				<c:param name="id" value="${listing.id}"></c:param>
+			</c:url>
+			<a href="${image_link}">
+				<img src="${image_link}" alt="" class="img-fluid img-thumbnail">
+			</a>
+			<c:url value="/image" var="upload_link"></c:url>
+			<form action="${upload_link}" method="post" enctype="multipart/form-data">
+			    <input type="hidden" name="id" value="${listing_id}"/>
+			    <input type="file" class="form-control"  name="image" accept="image/*" />
+			    <div class="row">
+					<div class="offset-9 col-sm-3">
+						<button class="btn btn-primary w-100" type="submit">Upload</button>
+					</div>	
+				</div>
+			</form>
+		</div>
+	</c:if>
 </body>
 </html>
