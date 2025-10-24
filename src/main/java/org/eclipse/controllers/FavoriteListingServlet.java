@@ -45,6 +45,16 @@ public class FavoriteListingServlet extends HttpServlet {
 					listings.add(listing);					
 				}
 			}
+			
+			List<User> listingOwners = new ArrayList<User>();
+			for (Listing listing : listings) {
+				User owner = userDao.findById(listing.getOwnerId());
+				if (owner != null) {
+					listingOwners.add(owner);					
+				}
+			}
+			
+			request.setAttribute("listings_owner", listingOwners);
 			request.setAttribute("listings", listings);
 		}
 		

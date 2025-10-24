@@ -28,16 +28,18 @@
 					<th scope="col">Description</th>
 					<th scope="col">Prix</th>
 					<th scope="col">Ville</th>
+					<th scope="col">Annonceur</th>
 					<th scope="col">Options</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${listings}" var="listing">
+				<c:forEach items="${listings}" var="listing" varStatus="listingStatus">
 					<tr>
 						<th scope="row">${ listing.title }</th>
 						<td>${ listing.description }</td>
 						<td>${ listing.price }</td>
 						<td>${ listing.city }</td>
+						<td>${ listings_owner[listingStatus.index].lastName } ${ listings_owner[listingStatus.index].firstName }</td>
 						<td>
 							<c:url var="toggle_favorite" value="/favorites"></c:url>
 							<form action="${toggle_favorite}" method="post">

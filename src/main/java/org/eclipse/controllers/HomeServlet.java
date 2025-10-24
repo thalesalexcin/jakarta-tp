@@ -44,8 +44,17 @@ public class HomeServlet extends HttpServlet {
 				listingFavorites.add(isFavorite);
 			}
 			
+			List<User> listingOwners = new ArrayList<User>();
+			for (Listing listing : otherListings) {
+				User owner = userDao.findById(listing.getOwnerId());
+				if (owner != null) {
+					listingOwners.add(owner);					
+				}
+			}
+			
 			request.setAttribute("listings", otherListings);
 			request.setAttribute("listings_favorites", listingFavorites);
+			request.setAttribute("listings_owner", listingOwners);
 			request.setAttribute("first_name", user.getFirstName());
 			request.setAttribute("last_name", user.getLastName());
 		}
